@@ -5,18 +5,17 @@ Core model implementation with CSPDarknet backbone, PANet neck, and detection he
 
 import numpy as np
 from typing import Dict, Any, Optional, Tuple
+from dataclasses import dataclass
 from max import engine
 from max.dtype import DType
 from max.graph import DeviceRef, Graph, TensorType, ops
-from max.pipelines.core import PipelineModel
-from max.pipelines.lib import ModelConfig
+from max.pipelines.lib import PipelineModel
 
-
-class YOLOv10Config(ModelConfig):
+@dataclass
+class YOLOv10Config:
     """Configuration for YOLOv10 model"""
     
     def __init__(self, **kwargs):
-        super().__init__(**kwargs)
         self.input_size = kwargs.get("input_size", (640, 640))
         self.num_classes = kwargs.get("num_classes", 80)
         self.backbone_channels = kwargs.get("backbone_channels", [32, 64, 128, 256, 512, 1024])

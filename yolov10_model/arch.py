@@ -19,18 +19,13 @@ yolov10_arch = SupportedArchitecture(
     default_encoding=SupportedEncoding.bfloat16,
     supported_encodings={
         SupportedEncoding.bfloat16: [KVCacheStrategy.PAGED],
-        SupportedEncoding.float16: [KVCacheStrategy.PAGED],
         SupportedEncoding.float32: [KVCacheStrategy.PAGED],
+        SupportedEncoding.q4_k: [KVCacheStrategy.PAGED],
         # YOLOv10 supports various precision formats for object detection
     },
     pipeline_model=YOLOv10Model,
     tokenizer=TextTokenizer,  # For text-based prompts if needed
     default_weights_format=WeightsFormat.safetensors,
     multi_gpu_supported=True,  # YOLOv10 can be distributed across GPUs
-    weight_adapters={
-        WeightsFormat.safetensors: weight_adapters.convert_safetensor_state_dict,
-        WeightsFormat.gguf: weight_adapters.convert_gguf_state_dict,
-        # Add other weight formats if needed
-    },
-    task=PipelineTask.OBJECT_DETECTION,  # YOLOv10 is for object detection
+    task=PipelineTask.TEXT_GENERATION,  # Using TEXT_GENERATION as placeholder
 ) 
