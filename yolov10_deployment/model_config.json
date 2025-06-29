@@ -1,0 +1,40 @@
+{
+  "model": {
+    "name": "yolov10-vision",
+    "version": "1.0.0",
+    "architecture": "YOLOv10",
+    "input_size": [
+      640,
+      640
+    ],
+    "num_classes": 80,
+    "backbone_channels": [
+      32,
+      64,
+      128,
+      256,
+      512,
+      1024
+    ],
+    "neck_channels": 256,
+    "anchors_per_scale": 3,
+    "confidence_threshold": 0.25,
+    "nms_threshold": 0.45
+  },
+  "inference": {
+    "batch_size": 1,
+    "device": "auto",
+    "precision": "fp16",
+    "max_concurrent_requests": 10
+  },
+  "serving": {
+    "port": 8000,
+    "host": "0.0.0.0",
+    "endpoints": [
+      "/v1/vision/detect",
+      "/v1/chat/completions",
+      "/health",
+      "/model/info"
+    ]
+  }
+}

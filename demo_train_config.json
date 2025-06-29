@@ -1,0 +1,35 @@
+{
+  "model": {
+    "input_size": [
+      640,
+      640
+    ],
+    "num_classes": 80,
+    "backbone_channels": [
+      32,
+      64,
+      128,
+      256,
+      512,
+      1024
+    ],
+    "neck_channels": 256,
+    "anchors_per_scale": 3
+  },
+  "training": {
+    "learning_rate": 0.001,
+    "batch_size": 4,
+    "num_epochs": 5,
+    "save_interval": 2
+  },
+  "loss": {
+    "lambda_coord": 5.0,
+    "lambda_noobj": 0.5,
+    "lambda_class": 1.0
+  },
+  "data": {
+    "data_path": "sample_dataset",
+    "config_path": "sample_dataset/dataset.yaml",
+    "augment": true
+  }
+}
